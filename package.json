@@ -1,0 +1,28 @@
+{
+  "name": "sample-npm-pkg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "bin": {
+    "sample-npm-pkg": "dist/index.js"
+  },
+  "scripts": {
+    "start": "node dist",
+    "build": "npx tsc",
+    "dev": "ts-node src",
+    "local-install": "npm i -g"
+  },
+  "keywords": [],
+  "author": "Akshit1311",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "ts-node": "^10.8.1"
+  }
+}
