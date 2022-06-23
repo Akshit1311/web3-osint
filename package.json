@@ -14,7 +14,7 @@
     "start": "node dist",
     "build": "npx tsc",
     "dev": "ts-node src",
-    "local-install": "npm i -g"
+    "local-install": "npm run build && npm i -g"
   },
   "keywords": [],
   "author": "Akshit1311",
