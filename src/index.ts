@@ -13,8 +13,6 @@ import { askActionToPerform } from "./commands/questions";
 import { sleep } from "./utils/sleep";
 import inquirer from "inquirer";
 
-console.log("web3-osint pkg works");
-
 let isRunning = true;
 
 const run = async () => {
