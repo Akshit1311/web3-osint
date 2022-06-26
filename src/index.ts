@@ -1,20 +1,48 @@
 #!/usr/bin/env node
 
-import { getUserBalance } from "./methods/getUserBalance";
-import { getUserTransactions } from "./methods/getUserTransactions";
-import { handleAsync } from "./utils/handleAsync";
+// import {
+//   getTweetById,
+//   getTweetsByQuery,
+//   getTwitterUserByUsername,
+// } from "./methods/tweetMethods";
+// import { getUserBalance } from "./methods/getUserBalance";
+// import { getUserTransactions } from "./methods/getUserTransactions";
+// import { handleAsync } from "./utils/handleAsync";
+import { welcome } from "./commands/welcome";
+import { askActionToPerform } from "./commands/questions";
+import { sleep } from "./utils/sleep";
+import inquirer from "inquirer";
 
 console.log("web3-osint pkg works");
 
+let isRunning = true;
+
 const run = async () => {
-  console.log("Running..");
-  const data = await handleAsync(() => getUserBalance("axit.eth"));
-  console.log({ data });
+  await welcome();
+  await sleep(1000);
 
-  console.log("Fetching..");
-  const txns = await handleAsync(() => getUserTransactions("axit.eth"));
+  do {
+    await askActionToPerform();
 
-  console.table(txns);
+    console.log("\n");
+    const answers = await inquirer.prompt([
+      {
+        name: "doContinue",
+        type: "list",
+        message: "Do you perform any other OSINT?",
+        choices: ["Yes", "No"],
+        default() {
+          return "No";
+        },
+      },
+    ]);
+    console.log("\n");
+
+    if (answers.doContinue === "No") {
+      console.log("Happy Hacking!");
+      isRunning = false;
+    }
+  } while (isRunning);
 };
 
 run();
